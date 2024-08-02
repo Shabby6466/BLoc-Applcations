@@ -8,3 +8,9 @@ abstract class UserEvent extends Equatable {
 }
 
 class FetchUser extends UserEvent {}
+
+class SearchUser extends UserEvent {
+  final String stSearch;
+
+  SearchUser(this.stSearch);
+}
