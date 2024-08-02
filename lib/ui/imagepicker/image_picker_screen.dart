@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:blocexample/bloc/image_picker/image_picker_bloc.dart';
 import 'package:blocexample/bloc/image_picker/image_picker_event.dart';
 import 'package:blocexample/bloc/image_picker/image_picker_state.dart';
@@ -44,7 +43,7 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
                 onTap: () {
                   context.read<ImagePickerBloc>().add(PickImageFromGallery());
                 },
-                child: Center(
+                child: const Center(
                   child: CircleAvatar(
                     child: Icon(Icons.image),
                   ),

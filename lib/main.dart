@@ -1,8 +1,9 @@
 import 'package:blocexample/bloc/counter/counter_bloc.dart';
 import 'package:blocexample/bloc/image_picker/image_picker_bloc.dart';
 import 'package:blocexample/bloc/slider/slider_bloc.dart';
-import 'package:blocexample/ui/image_picker_screen.dart';
-import 'package:blocexample/ui/slider.dart';
+import 'package:blocexample/bloc/user/user_bloc.dart';
+import 'package:blocexample/bloc/user/user_event.dart';
+import 'package:blocexample/ui/userpage.dart';
 import 'package:blocexample/utils/image_picker_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,13 +17,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (_) => CounterBloc()),
-          BlocProvider(create: (_) => SwitchBloc()),
-          BlocProvider(create: (_) => ImagePickerBloc(ImagePickerUtil())),
-        ],
-        child: const MaterialApp(
-            debugShowCheckedModeBanner: false, home: ImagePickerScreen()));
+    return MultiBlocProvider(providers: [
+      BlocProvider(create: (_) => CounterBloc()),
+      BlocProvider(create: (_) => SwitchBloc()),
+      BlocProvider(create: (_) => ImagePickerBloc(ImagePickerUtil())),
+      BlocProvider(
+        create: (_) => UserBloc()..add(FetchUser()),
+      ),
+    ], child: MaterialApp(debugShowCheckedModeBanner: false, home: UserPage()));
   }
 }
